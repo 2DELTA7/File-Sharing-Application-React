@@ -1,8 +1,11 @@
 import express from 'express';
-import { uploadImage } from '../Controllers/ImageController.js';
+import { uploadImage,downloadImage } from '../Controllers/ImageController.js';
+import upload from '../utils/Upload.js'
 
 const router = express.Router();      
 
-router.post('/upload',uploadImage);
+router.post('/upload',upload.single('file'),uploadImage);
+
+router.get('/file/:fileId',downloadImage);
 
 export default router;
